@@ -69,9 +69,9 @@
 
     <!-- Build configuration -->
     <build>
-        <!-- Custom source and test directories -->
-        <sourceDirectory>Software-Testing/Assignment2/src</sourceDirectory> <!-- Adjusted to point to your source directory -->
-        <testSourceDirectory>Software-Testing/Assignment2/src/test/java</testSourceDirectory> <!-- Adjusted for tests -->
+        <!-- Set the correct directory for main source and test source -->
+        <sourceDirectory>${project.basedir}/src</sourceDirectory>
+        <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
 
         <plugins>
             <!-- Compiler plugin to compile Java code -->
