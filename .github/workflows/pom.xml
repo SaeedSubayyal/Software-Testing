@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- Basic Project Coordinates -->
-    <groupId>com.subayyal</groupId>
+    <groupId>com.subayyal</groupId> <!-- Change to your group ID -->
     <artifactId>login-app</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -16,8 +16,8 @@
 
     <!-- Java version -->
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source> <!-- Your Java version -->
+        <maven.compiler.target>11</maven.compiler.target> <!-- Your Java version -->
     </properties>
 
     <!-- Dependencies -->
@@ -41,34 +41,31 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.28</version>
+            <version>8.0.28</version> <!-- Use the appropriate version -->
         </dependency>
 
         <!-- Add external JARs from lib directory -->
         <dependency>
-            <groupId>com.subayyal</groupId>
+            <groupId>com.subayyal</groupId> 
             <artifactId>jacocoagent</artifactId>
-            <version>0.8.7</version>
+            <version>0.8.7</version> 
             <scope>system</scope>
-            <systemPath>${project.basedir}/Assignment2/lib/jacocoagent.jar</systemPath> <!-- Corrected path -->
+            <systemPath>${project.basedir}/Assignment2/lib/jacocoagent.jar</systemPath>
         </dependency>
-
         <dependency>
-            <groupId>com.subayyal</groupId>
+            <groupId>com.subayyal</groupId> 
             <artifactId>junit-console</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/Assignment2/lib/junit-platform-console-standalone.jar</systemPath> <!-- Corrected path -->
+            <systemPath>${project.basedir}/Assignment2/lib/junit-platform-console-standalone.jar</systemPath>
         </dependency>
-
         <dependency>
-            <groupId>com.subayyal</groupId>
+            <groupId>com.subayyal</groupId> 
             <artifactId>jacococli</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/Assignment2/lib/jacococli.jar</systemPath> <!-- Corrected path -->
+            <systemPath>${project.basedir}/Assignment2/lib/jacococli.jar</systemPath>
         </dependency>
-
     </dependencies>
 
     <!-- Build configuration -->
@@ -111,5 +108,4 @@
             </plugin>
         </plugins>
     </reporting>
-
 </project>
