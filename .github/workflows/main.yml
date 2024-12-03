@@ -29,18 +29,18 @@ jobs:
     #   run: ./gradlew build
 
     - name: Run Tests
-      run: mvn test  # Run the tests using Maven (change to './gradlew test' if using Gradle)
+      run: mvn test  # Run the tests using Maven (looks for tests in src/test/java by default)
 
-    # Capture and upload test results as artifacts (useful for debugging)
+    # Upload test results (Maven default)
     - name: Upload Test Results (Maven)
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3  # Updated version
       with:
         name: test-results
-        path: target/test-classes  # This is the default location where Maven stores test results
+        path: target/test-classes  # Default Maven test results path
 
     # Optional: If you are using Gradle, you can upload the test results here:
     # - name: Upload Test Results (Gradle)
-    #   uses: actions/upload-artifact@v2
+    #   uses: actions/upload-artifact@v3  # Updated version
     #   with:
     #     name: test-results
-    #     path: build/test-results  # Default location for Gradle test results
+    #     path: build/test-results  # Gradle test results path
