@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- Basic Project Coordinates -->
-    <groupId>com.subayyal</groupId> 
+    <groupId>com.subayyal</groupId>
     <artifactId>login-app</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -69,8 +69,10 @@
 
     <!-- Build configuration -->
     <build>
-        <sourceDirectory>src/main/java</sourceDirectory>  <!-- Ensure the source directory is set correctly -->
-        
+        <!-- Custom source and test directories -->
+        <sourceDirectory>Software-Testing/Assignment2/src</sourceDirectory> <!-- Adjusted to point to your source directory -->
+        <testSourceDirectory>Software-Testing/Assignment2/src/test/java</testSourceDirectory> <!-- Adjusted for tests -->
+
         <plugins>
             <!-- Compiler plugin to compile Java code -->
             <plugin>
@@ -93,6 +95,7 @@
                         <goals>
                             <goal>jar</goal>
                         </goals>
+                        <phase>package</phase>
                     </execution>
                 </executions>
             </plugin>
