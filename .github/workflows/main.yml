@@ -1,48 +1,113 @@
-name: CI Pipeline
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-on:
-  pull_request:
-    branches:
-      - main  # Trigger on pull request to main branch
-  push:
-    branches:
-      - main  # Also trigger on push to main branch
+    <modelVersion>4.0.0</modelVersion>
 
-jobs:
-  build:
-    runs-on: ubuntu-latest  # Runs the job on the latest Ubuntu environment
+    <!-- Basic Project Coordinates -->
+    <groupId>com.subayyal</groupId>
+    <artifactId>login-app</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-    steps:
-    - name: Checkout the code
-      uses: actions/checkout@v2  # Check out the code from the repository
+    <name>LoginApp</name>
+    <description>A simple login application with MySQL authentication</description>
 
-    - name: Set up Java
-      uses: actions/setup-java@v4.5.0
-      with:
-        java-version: '11'
-        distribution: 'temurin'  # Correct distribution
-        java-package: 'jdk'
+    <!-- Java version -->
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
 
-    - name: Install Dependencies (Maven)
-      run: mvn install  # If you're using Maven, this will install dependencies from the pom.xml
+    <!-- Dependencies -->
+    <dependencies>
 
-    # Optional: If you're using Gradle, replace the Maven command with:
-    # - name: Install Dependencies (Gradle)
-    #   run: ./gradlew build
+        <!-- JUnit for testing -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
+        </dependency>
 
-    - name: Run Tests
-      run: mvn test  # Run the tests using Maven (looks for tests in src/test/java by default)
+        <!-- MySQL JDBC Driver -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.28</version>
+        </dependency>
 
-    # Upload test results (Maven default)
-    - name: Upload Test Results (Maven)
-      uses: actions/upload-artifact@v3  # Upload test results using the latest version
-      with:
-        name: test-results
-        path: target/test-classes  # Default Maven test results path
+        <!-- Add external JARs from lib directory -->
+        <dependency>
+            <groupId>com.subayyal</groupId>
+            <artifactId>jacocoagent</artifactId>
+            <version>0.8.7</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/jacocoagent.jar</systemPath>
+        </dependency>
 
-    # Optional: If you are using Gradle, you can upload the test results here:
-    # - name: Upload Test Results (Gradle)
-    #   uses: actions/upload-artifact@v3  # Updated version
-    #   with:
-    #     name: test-results
-    #     path: build/test-results  # Gradle test results path
+        <dependency>
+            <groupId>com.subayyal</groupId>
+            <artifactId>junit-console</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/junit-platform-console-standalone.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.subayyal</groupId>
+            <artifactId>jacococli</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/jacococli.jar</systemPath>
+        </dependency>
+    </dependencies>
+
+    <!-- Build configuration -->
+    <build>
+        <plugins>
+            <!-- Compiler plugin to compile Java code -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+
+            <!-- Jar Plugin to package the app into a jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- Running JUnit tests during build -->
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+        </plugins>
+    </reporting>
+</project>
