@@ -20,9 +20,8 @@ jobs:
       uses: actions/setup-java@v3  # Use version v3 of the setup-java action
       with:
         java-version: '11'  # Set the Java version to 11
-        distribution: 'adoptium'  # Corrected distribution name (AdoptOpenJDK is now Adoptium)
-        java-package: 'jdk'  # Use JDK, not just JRE
-        check-latest: false  # Optional: Prevent checking for the latest version
+        distribution: 'adoptopenjdk'  # Correct distribution for AdoptOpenJDK (now Adoptium)
+        java-package: 'jdk'  # Install JDK package
 
     - name: Install Dependencies (Maven)
       run: mvn install  # If you're using Maven, this will install dependencies from the pom.xml
@@ -40,3 +39,10 @@ jobs:
       with:
         name: test-results
         path: target/test-classes  # Default Maven test results path
+
+    # Optional: If you are using Gradle, you can upload the test results here:
+    # - name: Upload Test Results (Gradle)
+    #   uses: actions/upload-artifact@v3  # Updated version
+    #   with:
+    #     name: test-results
+    #     path: build/test-results  # Gradle test results path
