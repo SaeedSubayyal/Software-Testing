@@ -19,28 +19,23 @@ jobs:
     - name: Set up Java
       uses: actions/setup-java@v2
       with:
-        java-version: '11'  # Set the Java version to 11 (modify if using a different version)
+        java-version: '11'  # Set the Java version to 11
+
+    - name: Verify Java version
+      run: java -version  # Check Java version to ensure it's set to 11
 
     - name: Install Dependencies (Maven)
-      run: mvn install  # If you're using Maven, this will install dependencies from the pom.xml
-
-    # Optional: If you're using Gradle, replace the Maven command with:
-    # - name: Install Dependencies (Gradle)
-    #   run: ./gradlew build
+      run: mvn install  # Install Maven dependencies
 
     - name: Run Tests
-      run: mvn test  # Run the tests using Maven (change to './gradlew test' if using Gradle)
+      run: mvn test  # Run Maven tests
 
-    # Capture and upload test results as artifacts (useful for debugging)
-    - name: Upload Test Results (Maven)
-      uses: actions/upload-artifact@v2
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v3  # Updated to v3
       with:
         name: test-results
-        path: target/test-classes  # This is the default location where Maven stores test results
+        path: target/test-classes  # Path to store test results
 
-    # Optional: If you are using Gradle, you can upload the test results here:
-    # - name: Upload Test Results (Gradle)
-    #   uses: actions/upload-artifact@v2
-    #   with:
-    #     name: test-results
-    #     path: build/test-results  # Default location for Gradle test results
+    # Install missing local dependencies (if any)
+    - name: Install local dependencies
+      run: mvn install:install-file -Dfile=path/to/jacocoagent.jar -DgroupId=com.subayyal -DartifactId=jacocoagent -Dversion=0.8.7 -Dpackaging=jar
