@@ -46,25 +46,25 @@
 
         <!-- Add external JARs from lib directory -->
         <dependency>
-            <groupId>com.subayyal</groupId> <!-- Your project/group ID -->
+            <groupId>com.subayyal</groupId> 
             <artifactId>jacocoagent</artifactId>
-            <version>0.8.7</version> <!-- Adjust to your actual version -->
+            <version>0.8.7</version> 
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/jacocoagent.jar</systemPath>
+            <systemPath>${project.basedir}/Assignment2/lib/jacocoagent.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>com.subayyal</groupId> <!-- Your project/group ID -->
+            <groupId>com.subayyal</groupId> 
             <artifactId>junit-console</artifactId>
-            <version>1.0</version> <!-- Adjust to your actual version -->
+            <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/junit-platform-console-standalone.jar</systemPath>
+            <systemPath>${project.basedir}/Assignment2/lib/junit-platform-console-standalone.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>com.subayyal</groupId> <!-- Your project/group ID -->
+            <groupId>com.subayyal</groupId> 
             <artifactId>jacococli</artifactId>
-            <version>1.0</version> <!-- Adjust to your actual version -->
+            <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/jacococli.jar</systemPath>
+            <systemPath>${project.basedir}/Assignment2/lib/jacococli.jar</systemPath>
         </dependency>
     </dependencies>
 
@@ -109,4 +109,3 @@
         </plugins>
     </reporting>
 </project>
-
