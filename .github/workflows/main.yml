@@ -16,12 +16,13 @@ jobs:
     - name: Checkout the code
       uses: actions/checkout@v2  # Check out the code from the repository
 
-    - name: Set up Java
-      uses: actions/setup-java@v3  # Use version v3 of the setup-java action
+    - name: Set up Java JDK
+      uses: actions/setup-java@v4.5.0  # Correct version of setup-java action
       with:
         java-version: '11'  # Set the Java version to 11
-        distribution: 'adoptopenjdk'  # Correct distribution for AdoptOpenJDK (now Adoptium)
-        java-package: 'jdk'  # Install JDK package
+        distribution: 'adoptium'  # Correct distribution name for Eclipse Adoptium
+        java-package: 'jdk'  # Install JDK package, not JRE
+        check-latest: false  # Optional: Prevent checking for the latest version
 
     - name: Install Dependencies (Maven)
       run: mvn install  # If you're using Maven, this will install dependencies from the pom.xml
