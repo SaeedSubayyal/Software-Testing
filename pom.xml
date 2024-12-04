@@ -2,27 +2,21 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- Basic Project Coordinates -->
     <groupId>com.subayyal</groupId>
     <artifactId>login-app</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>LoginApp</name>
-    <description>A simple login application with MySQL authentication</description>
-
-    <!-- Java version -->
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <!-- Dependencies -->
     <dependencies>
-        <!-- JUnit for testing -->
+        <!-- JUnit Jupiter -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -42,39 +36,15 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.28</version>
         </dependency>
-
-        <!-- External JAR dependencies -->
-        <dependency>
-            <groupId>com.subayyal</groupId>
-            <artifactId>jacocoagent</artifactId>
-            <version>0.8.7</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/Assignment2/lib/jacocoagent.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.subayyal</groupId>
-            <artifactId>junit-console</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/Assignment2/lib/junit-platform-console-standalone.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.subayyal</groupId>
-            <artifactId>jacococli</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/Assignment2/lib/jacococli.jar</systemPath>
-        </dependency>
     </dependencies>
 
-    <!-- Build configuration -->
     <build>
-        <!-- Set the correct directory for main source and test source -->
+        <!-- Specify source directories for your specific project structure -->
         <sourceDirectory>${project.basedir}/src</sourceDirectory>
         <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
 
         <plugins>
-            <!-- Compiler plugin to compile Java code -->
+            <!-- Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -85,31 +55,30 @@
                 </configuration>
             </plugin>
 
-            <!-- Jar Plugin to package the app into a jar -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                        <phase>package</phase>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
-    <!-- Running JUnit tests during build -->
-    <reporting>
-        <plugins>
+            <!-- Surefire Plugin for running tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
             </plugin>
+
+            <!-- JAR Plugin with explicit configuration -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>LoginApp</mainClass>
+                        </manifest>
+                    </archive>
+                    <includes>
+                        <include>**/*.class</include>
+                    </includes>
+                </configuration>
+            </plugin>
         </plugins>
-    </reporting>
+    </build>
 </project>
